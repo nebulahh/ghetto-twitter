@@ -1,71 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <main class="tweetContainer">
-  <div class="card">
-    <ul class="columnOne">
-      <li>
-        <a href="#">Home</a>
-      </li>
-      <li>
-        <a href="/tweets/getProfile">Profile</a>
-      </li>
-     
-    </ul>
-  </div>
-  <div class="card">
-    <div class="card_child">
-      <h1>Ghetto Twitter</h1>
-    </div>
-    <div class="card_child">
-      <form action="/tweets/createTweets" method='POST'>
-        <div class="tweetBox">
-          <textarea id="tweet" name="tweet" rows="12" cols="45" class="card_child"></textarea>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="tweetContainer">
+      <div class="card">
+        <ul class="columnOne">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="/tweets/getProfile">Profile</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card_child">
+          <h1>Ghetto Twitter</h1>
         </div>
         <div class="card_child">
-          <button type="submit">Submit</button>
-        </div>    
+          <form action="/tweets/createTweets" method="POST">
+            <div class="tweetBox">
+              <textarea
+                id="tweet"
+                name="tweet"
+                rows="12"
+                cols="45"
+                class="card_child"
+              ></textarea>
+            </div>
+            <div class="card_child">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <ul class="tweetContainerTwo">
+          <% tweets.forEach( el => { %>
+          <li class="tweetCard" data-id="<%=el._id%>">
+            <div class="tweetCardTop"><%= el.tweet %></div>
+            <div class="tweetCardBottom">
+              <%if(user._id === el.userId){ %>
+              <button type="button" class="del">Delete</button>
+              <%}%>
+
+              <button class="addLike" type="button">Like</button>
+              <%= el.likeCount %>
+            </div>
+              <div class="mt-5">
+    <!-- Comment -->
+      <form action="/comment/createComment/>" method="POST"> 
+        <div class="mb-3">
+            <label for="Comment" class="form-label">Comment</label>
+            <input type="text" class="form-control" id="comment" name="comment">
+        </div>
+        <button type="submit" class="btn btn-primary" >Submit</button>
       </form>
     </div>
-    <ul class="tweetContainerTwo">
-      <% tweets.forEach( el => { %>
-        <li class='tweetCard' data-id='<%=el._id%>'>
-          <div class='tweetCardTop'>  
-             <%= el.tweet %>
-          </div>
-          <div class='tweetCardBottom'>
-            <button type="button" class='del'>Delete</button>
-            <button class="addLike" type="button">Like</button>
-            <%= el.likeCount %>
-          </div>
-
-          <div>
-            <!-- <h2>Add a Comment</h2> -->
-            <form> 
-              <div>
-                  <label for="Comment" class="form-label">Comment</label>
-                  <input type="text" class="form-control" id="comment" name="comment">
-              </div>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+    <ul>
+      <% for(var i=0; i<comments.length; i++) {%>
+        <li class="col-6 justify-content-between mt-5">
+          <h3><%= comments[i].comment%></h3>
+          <!-- <h1><%= comments[i]._id%></h1> -->
+          <!-- adding comment likes -->
+          <form class="col-1" action="/comment/likeComment/<%= comments[i]._id %>?_method=PUT" method="POST">
+            <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          </form>
+          <h6 class="col-3">Likes: <%= comments[i].likes %></h6>
+          <!-- adding comment likes above -->
+          <!-- adding comment deletes below -->
+          <form action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE" method="POST" class="col-3"> 
+            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+          </form>
+          <!-- adding comment deletes above -->
         </li>
-<% }) %>    
-
-    
+      <% } %>
     </ul>
-  </div>
-  <div class="card">
-    <a href="/logout">Logout</a>
-  </div>
-  </main>
+          </li>
+          
+          <% }) %>
+        </ul>
+      </div>
+      <div class="card">
+        <a href="/logout">Logout</a>
+      </div>
+    </main>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

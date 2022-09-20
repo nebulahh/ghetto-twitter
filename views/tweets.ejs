@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="tweetContainer">
+  <div class="card">
+    <ul class="columnOne">
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="/tweets/getProfile">Profile</a>
+      </li>
+     
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card_child">
+      <h1>Ghetto Twitter</h1>
+    </div>
+    <div class="card_child">
+      <form action="/tweets/createTweets" method='POST'>
+        <div class="tweetBox">
+          <textarea id="tweet" name="tweet" rows="12" cols="45" class="card_child"></textarea>
+        </div>
+        <div class="card_child">
+          <button type="submit">Submit</button>
+        </div>    
+      </form>
+    </div>
+    <ul class="tweetContainerTwo">
+      <% tweets.forEach( el => { %>
+        <li class='tweetCard' data-id='<%=el._id%>'>
+          <div class='tweetCardTop'>  
+             <%= el.tweet %>
+          </div>
+          <div class='tweetCardBottom'>
+            <button type="button" class='del'>Delete</button>
+            <button class="addLike" type="button">Like</button>
+            <%= el.likeCount %>
+          </div>
+
+          <div>
+            <!-- <h2>Add a Comment</h2> -->
+            <form> 
+              <div>
+                  <label for="Comment" class="form-label">Comment</label>
+                  <input type="text" class="form-control" id="comment" name="comment">
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </li>
+<% }) %>    
+
+    
+    </ul>
+  </div>
+  <div class="card">
+    <a href="/logout">Logout</a>
+  </div>
+  </main>
+    <script src="js/main.js"></script>
+</body>
+</html>

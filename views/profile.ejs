@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      * {
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+body {
+  height: 100vh
+}
+
+/* INDEX EJS */
+.mainIndexContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: black;
+  color: white;
+  height:2100px;  
+}
+
+.indexContainerOne {
+  width: 50%;
+}
+
+.indexContainerTwo {
+  margin-top: 200px;
+  margin-left: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: black;
+  color: white;
+  height:2100px;
+}
+
+.indexContainer > .buttonDiv > .button {
+  width: 130px;
+  height: 40px;
+  color: #fff
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: blue;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+/* TODOS EJS */
+.columnOne {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin-top: 20px;
+  margin-left:20px;
+}
+
+.columnOne > li {
+  padding: 20px 5px 5px 10px;
+}
+
+
+.tweetContainer {
+  display: flex;
+  background: black;
+  color: white;
+  height: 2190px;
+}
+
+.card {
+  flex-grow: 1;
+  width: 33%;
+  flex-direction: column;
+}
+
+.card_child {
+  text-align: center;
+  padding: 10px;
+}
+
+#tweet {
+  display: block;
+  text-align: left;
+  margin: 0 auto;
+  height: 5rem;
+}
+
+.tweetContainerTwo {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 10px;
+}
+
+.tweetCard {
+  width: 350px;
+  word-wrap: break-word;
+  border-radius: 10px;
+  outline: white 1px solid;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+.tweetCardTop {
+/*   height: 120px; */
+  width: 100%;
+margin-bottom: 15px;
+}
+
+/* .tweetCardBottom {
+  height: 29px;
+  width: 100%;
+} */
+
+.completed{
+    text-decoration: line-through;
+    color: gray;
+}
+.not{
+    text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+  <main class="tweetContainer">
+  <div class="card">
+    <ul class="columnOne">
+      <li>
+        <a href="/tweets">Home</a>
+      </li>
+      <li>
+        <a href="#">Profile</a>
+      </li>
+     
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card_child">
+      <h1>Ghetto Twitter</h1>
+    </div>
+    <ul class="tweetContainerTwo">
+    <% tweets.forEach( el => { %>
+            <li class='tweetCard' data-id='<%=el._id%>'>
+              <div class='tweetCardTop'>  
+                 <%= el.tweet %>
+              </div>
+              <div class='tweetCardBottom'>
+                <button type="button" class='del'>Delete</button>
+                <button class="addLike" type="button">Like</button>
+                <%= el.likeCount %>
+              </div>
+            </li>
+    <% }) %>    
+    </ul>
+  </div>
+  <div class="card">
+    <a href="/logout">Logout</a>
+  </div>
+  </main>
+    <script src="js/main.js"></script>
+</body>
+</html>

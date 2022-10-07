@@ -66,7 +66,7 @@ module.exports = {
       await Tweets.findOneAndDelete({ _id: req.body.tweetIdFromJSFile })
       console.log('Deleted Tweets')
       // res.redirect('/tweets')
-      // res.redirect(303, "/tweets");
+      
       
       res.redirect(303, "/tweets");
       // location.reload(); 

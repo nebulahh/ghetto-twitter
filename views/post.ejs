@@ -96,7 +96,6 @@
                     <div class="d-flex justify-content-end socials p-2 py-3">
                       <i class="addLike fa fa-thumbs-up"></i>
                        <%= post.likeCount %>
-                      <i class="fa fa-trash del"></i>
                       
                     </div>
                 </div>
@@ -144,30 +143,10 @@
   </div>
 
   <script>
-const deleteBtn = document.querySelector('.del')
+
 const likeBtn = document.querySelector('.addLike')
 
 likeBtn.addEventListener('click', likeTweet)
-deleteBtn.addEventListener('click', deleteTweet)
-
-async function deleteTweet() {
-  const tweetId = this.parentNode.parentNode.dataset.id
-  try {
-    const response = await fetch('/getTweet/deleteTweet', {
-      method: 'delete',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        'tweetIdFromJSFile': tweetId
-      })
-      
-    })
-    const data = await response.json()
-    console.log(data)
-    location.reload()
-  } catch (err) {
-    console.log(err)
-  }
-}
 
 async function likeTweet() {
   const tweetId = this.parentNode.parentNode.dataset.id

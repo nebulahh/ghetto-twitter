@@ -2,7 +2,9 @@ html,
 body {
   height: 100%;
 }
-
+a {
+  color: white;
+}
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -46,4 +48,8 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.msg {
+  margin: 0 auto;
 }

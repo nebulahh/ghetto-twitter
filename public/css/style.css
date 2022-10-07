@@ -12,7 +12,7 @@
 }
 
 body {
-  height: 100vh
+  height: 100vh;
 }
 
 /* INDEX EJS */
@@ -133,3 +133,7 @@ margin-bottom: 15px;
 .not{
     text-decoration: underline;
 }
+
+
+/*  */
+

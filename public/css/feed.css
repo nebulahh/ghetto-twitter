@@ -1,0 +1,28 @@
+body {
+  background-color:#eee;
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.time {
+  font-size: 9px !important;
+}
+.socials i { 
+  margin-right: 14px;
+  font-size: 17px;
+  color: #d2c8c8;
+  cursor: pointer
+}
+
+.feed-image img {
+  width: 100%;
+  height: auto
+}

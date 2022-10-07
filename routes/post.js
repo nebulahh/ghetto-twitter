@@ -3,11 +3,7 @@ const router = express.Router()
 const tweetsController = require('../controllers/tweets') 
 const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', ensureAuth, tweetsController.getTweets)
-
-router.get('/getProfile', tweetsController.getProfile)
-
-router.post('/createTweets', tweetsController.createTweets)
+router.get("/:id", ensureAuth, tweetsController.getTweet);
 
 router.put('/likeTweet', tweetsController.likeTweet)
 
